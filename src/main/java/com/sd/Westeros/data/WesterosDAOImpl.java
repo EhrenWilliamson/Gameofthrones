@@ -112,4 +112,70 @@ public class WesterosDAOImpl implements WesterosDAO{
 		}
 		return house;		
 	}
+	@Override
+	public List<Player> getPlayersByHouse(House house) {
+		List<Player> players = new ArrayList<>();
+		String sql = "INSERT * FROM film WHERE title like ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + house + "%");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Player newPlayer = new Player();
+				players.add(newPlayer);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return players;
+
+	}
+	@Override
+	public List<Player> deletePlayer(Player player) {
+		List<Player> players = new ArrayList<>();
+		String sql = "INSERT * FROM film WHERE title like ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + player + "%");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Player newPlayer = new Player();
+				players.remove(newPlayer);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return players;
+
+	}
+	@Override
+	public List<House> deleteHouse(House house) {
+		List<House> houses = new ArrayList<>();
+		String sql = "INSERT * FROM film WHERE title like ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + house + "%");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				House newHouse = new House(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
+						rs.getInt(6), rs.getDouble(7), rs.getInt(8), rs.getDouble(9), rs.getString(10));
+				houses.remove(newHouse);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return houses;	
+	}
 }
