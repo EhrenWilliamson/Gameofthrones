@@ -6,6 +6,22 @@ public class Player {
 	private String nickName;
 	private String status;
 
+	private String houseName;
+	public Player(String firstName, String lastName, String nickName, String status, String houseName) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.nickName = nickName;
+		this.status = status;
+		this.houseName = houseName;
+	}
+	public String getHouseName() {
+		return houseName;
+	}
+	public void setHouseName(String houseName) {
+		this.houseName = houseName;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

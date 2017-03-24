@@ -8,4 +8,7 @@ List<Player> getPlayer (Player player);
 Player addPlayer(Player player);
 House addHouse(House house);
 List<Player> getPlayersByHouse(House house);
+List<Player> deletePlayer(Player player);
+List<House> deleteHouse(House house);
+
 }
