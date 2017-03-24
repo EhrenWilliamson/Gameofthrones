@@ -16,7 +16,6 @@ public class WesterosDAOImpl implements WesterosDAO{
 	private static String url = "jdbc:mysql://localhost:3306/sdvid";
 	private String user = "student";
 	private String pass = "student";
-	private List<House> Houses = new ArrayList<>();
 	public WesterosDAOImpl() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -36,8 +35,7 @@ public class WesterosDAOImpl implements WesterosDAO{
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				House newHouse = new House(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
-						rs.getInt(6), rs.getDouble(7), rs.getInt(8), rs.getDouble(9), rs.getString(10),
-						getCastOfMovie(rs.getInt(1)));
+						rs.getInt(6), rs.getDouble(7), rs.getInt(8), rs.getDouble(9), rs.getString(10));
 				houses.add(newHouse);
 			}
 			rs.close();
@@ -46,7 +44,7 @@ public class WesterosDAOImpl implements WesterosDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return house;
+		return houses;
 	}
 
 	@Override
@@ -60,7 +58,7 @@ public class WesterosDAOImpl implements WesterosDAO{
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Player newPlayer = new Player();
-				players.add(players);
+				players.add(newPlayer);
 			}
 			rs.close();
 			stmt.close();
@@ -70,5 +68,48 @@ public class WesterosDAOImpl implements WesterosDAO{
 		}
 		return players;
 
+	}
+	@Override
+	public Player addPlayer(Player player) {
+		List<Player> players = new ArrayList<>();
+		String sql = "INSERT * FROM film WHERE title like ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + player + "%");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Player newPlayer = new Player();
+				players.add(newPlayer);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return player;
+	}
+	@Override
+	public House addHouse(House house) {
+		List<House> houses = new ArrayList<>();
+		String sql = "INSERT * FROM film WHERE title like ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + house + "%");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				House newHouse = new House(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
+						rs.getInt(6), rs.getDouble(7), rs.getInt(8), rs.getDouble(9), rs.getString(10));
+				houses.add(newHouse);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return house;		
 	}
 }
