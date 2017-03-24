@@ -50,11 +50,17 @@ public class WesterosDAOImpl implements WesterosDAO{
 	@Override
 	public List<Player> getPlayer(Player player) {
 		List<Player> players = new ArrayList<>();
-		String sql = "SELECT * FROM film WHERE title like ?";
+		String sql = "SELECT first_name, last_name, nickname, player_status"
+				+ " FROM player"
+				+ " WHERE first_name=?"
+				+ " OR last_name = ?"
+				+ " OR nickname = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, "%" + player + "%");
+			stmt.setString(1, player.getFirstName());
+			stmt.setString(2, player.getLastName());
+			stmt.setString(3, player.getNickName());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Player newPlayer = new Player();
@@ -115,7 +121,7 @@ public class WesterosDAOImpl implements WesterosDAO{
 	@Override
 	public List<Player> getPlayersByHouse(House house) {
 		List<Player> players = new ArrayList<>();
-		String sql = "SELECT c.first_name, c.last_name, c.nickname, c.status, h.house_name "
+		String sql = "SELECT c.first_name, c.last_name, c.nickname, c.player_status, h.house_name "
 				+ "FROM player c JOIN house h"
 				+ "ON c.last_name = h.house_name"
 				+ "WHERE c.last_name = ?";
@@ -135,10 +141,9 @@ public class WesterosDAOImpl implements WesterosDAO{
 			e.printStackTrace();
 		}		
 		return players;
-
 	}
 	@Override
-	public List<Player> deletePlayer(Player player) {
+	public void deletePlayer(Integer id) {
 		List<Player> players = new ArrayList<>();
 		String sql = "INSERT * FROM film WHERE title like ?";
 		try {
@@ -155,9 +160,7 @@ public class WesterosDAOImpl implements WesterosDAO{
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
-		return players;
-
+		}
 	}
 	@Override
 	public List<House> deleteHouse(House house) {
