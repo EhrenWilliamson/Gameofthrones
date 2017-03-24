@@ -2,4 +2,4 @@
 target
 build
 bin
-/.gradle/
+.gradle
