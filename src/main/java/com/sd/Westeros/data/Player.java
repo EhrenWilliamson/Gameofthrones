@@ -1,4 +1,4 @@
-package com.sd.Westeros.data;
+package com.sd.westeros.data;
 
 public class Player {
 	private String firstName;

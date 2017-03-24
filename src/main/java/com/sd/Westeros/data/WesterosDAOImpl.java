@@ -1,4 +1,4 @@
-package com.sd.Westeros.data;
+package com.sd.westeros.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

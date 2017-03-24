@@ -1,4 +1,4 @@
-package com.Westeros.myapp;
+package com.westeros.myapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.sd.Westeros.data.House;
-import com.sd.Westeros.data.Player;
-import com.sd.Westeros.data.WesterosDAO;
+import com.sd.westeros.data.House;
+import com.sd.westeros.data.Player;
+import com.sd.westeros.data.WesterosDAO;
 
-@Controller
 @SessionAttributes("obj")
+@Controller
 public class HomeController {
 	
 	@Autowired
@@ -27,13 +27,14 @@ public class HomeController {
 		this.dao = w;
 	}
 
-	@RequestMapping(path = "welcome.do", method = RequestMethod.GET)
+//	@RequestMapping(path = "welcome.do", method = RequestMethod.GET)
+	@RequestMapping("*.do")
 	public String getHomePage(Model model) {
 //		model.addAttribute("houses", dao.getHouses());
 		return "home";
 	}
 	
-	@RequestMapping(path = "gethousebyname.do", method = RequestMethod.GET)
+//	@RequestMapping(path = "gethousebyname.do", method = RequestMethod.GET)
 	public String getHouseByName(Model model, String house) {
 		model.addAttribute("house", dao.getHouse(house));
 		return "house";
