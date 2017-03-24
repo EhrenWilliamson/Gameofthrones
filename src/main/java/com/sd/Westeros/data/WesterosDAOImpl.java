@@ -13,7 +13,7 @@ import java.util.List;
 
 public class WesterosDAOImpl implements WesterosDAO{
 
-	private static String url = "jdbc:mysql://localhost:3306/sdvid";
+	private static String url = "jdbc:mysql://localhost:3306/gotdb";
 	private String user = "student";
 	private String pass = "student";
 	public WesterosDAOImpl() {
@@ -67,8 +67,8 @@ public class WesterosDAOImpl implements WesterosDAO{
 			e.printStackTrace();
 		}
 		return players;
-
 	}
+	
 	@Override
 	public Player addPlayer(Player player) {
 		List<Player> players = new ArrayList<>();
@@ -115,14 +115,17 @@ public class WesterosDAOImpl implements WesterosDAO{
 	@Override
 	public List<Player> getPlayersByHouse(House house) {
 		List<Player> players = new ArrayList<>();
-		String sql = "INSERT * FROM film WHERE title like ?";
+		String sql = "SELECT c.first_name, c.last_name, c.nickname, c.status, h.house_name "
+				+ "FROM player c JOIN house h"
+				+ "ON c.last_name = h.house_name"
+				+ "WHERE c.last_name = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, "%" + house + "%");
+			stmt.setString(1, house.getName());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				Player newPlayer = new Player();
+				Player newPlayer = new Player(rs.getString(1),rs.getString(2),rs.getString(3), rs.getString(4), rs.getString(5));
 				players.add(newPlayer);
 			}
 			rs.close();
@@ -159,7 +162,7 @@ public class WesterosDAOImpl implements WesterosDAO{
 	@Override
 	public List<House> deleteHouse(House house) {
 		List<House> houses = new ArrayList<>();
-		String sql = "INSERT * FROM film WHERE title like ?";
+		String sql = "Delete * FROM film WHERE title like ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
