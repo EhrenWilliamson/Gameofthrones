@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Westeros</title>
+<title>Add a New House</title>
 </head>
 <body>
 	<form action="gethousebyname.do" method="GET">
