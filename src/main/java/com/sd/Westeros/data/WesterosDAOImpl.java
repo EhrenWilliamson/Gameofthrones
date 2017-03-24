@@ -112,4 +112,64 @@ public class WesterosDAOImpl implements WesterosDAO{
 		}
 		return house;		
 	}
+	
+	public House editHouse(House house) {
+
+		String sql = "UPDATE house SET name = ?, location = ?, headofhouse = ? WHERE id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			conn.setAutoCommit(false);
+			stmt.setString(1, house.getName());
+			stmt.setString(2, house.getLocation());
+			stmt.setString(3, house.getHeadOfHouse());
+			stmt.setInt(4, house.getId());
+			int rowsUpdated = stmt.executeUpdate();
+
+			if ( rowsUpdated == 1) {
+				conn.commit();
+			} else {
+				conn.rollback();
+			}
+			
+			stmt.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return house;		
+	}
+	
+	public Player editPlayer(Player player) {
+		
+		String sql = "UPDATE player SET first_name = ?, last_name = ?, nickname = ?,  "
+						+ "player_status = ? WHERE id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			conn.setAutoCommit(false);
+			stmt.setString(1, player.getFirstName());
+			stmt.setString(2, player.getLastName());
+			stmt.setString(3, player.getNickName());
+			stmt.setString(4, player.getPlayerStatus());			
+			stmt.setInt(5, player.getId());
+			int rowsUpdated = stmt.executeUpdate();
+			
+			if ( rowsUpdated == 1) {
+				conn.commit();
+			} else {
+				conn.rollback();
+			}
+			
+			stmt.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return player;		
+	}
 }
