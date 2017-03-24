@@ -1,4 +1,4 @@
-package data;
+package com.sd.Westeros.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,7 +26,7 @@ public class WesterosDAOImpl implements WesterosDAO{
 		}
 	}
 	@Override
-	public List<House> GetHouse(House house) {
+	public List<House> getHouse(House house) {
 		List<House> houses = new ArrayList<>();
 		String sql = "SELECT * FROM film WHERE title like ?";
 		try {
@@ -50,7 +50,7 @@ public class WesterosDAOImpl implements WesterosDAO{
 	}
 
 	@Override
-	public List<Character> getPlayer(Player player) {
+	public List<Player> getPlayer(Player player) {
 		List<Player> players = new ArrayList<>();
 		String sql = "SELECT * FROM film WHERE title like ?";
 		try {
@@ -59,7 +59,7 @@ public class WesterosDAOImpl implements WesterosDAO{
 			stmt.setString(1, "%" + player + "%");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				Player newPlayer = new Character();
+				Player newPlayer = new Player();
 				players.add(players);
 			}
 			rs.close();
@@ -71,5 +71,4 @@ public class WesterosDAOImpl implements WesterosDAO{
 		return players;
 
 	}
-
 }
