@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.sd.Westeros.data.House;
+import com.sd.Westeros.data.Player;
 import com.sd.Westeros.data.WesterosDAO;
 
 @Controller
@@ -27,7 +29,7 @@ public class HomeController {
 
 	@RequestMapping(path = "welcome.do", method = RequestMethod.GET)
 	public String getHomePage(Model model) {
-		model.addAttribute("houses", dao.getHouse());
+//		model.addAttribute("houses", dao.getHouses());
 		return "home";
 	}
 	
@@ -37,29 +39,29 @@ public class HomeController {
 		return "house";
 	}
 	
-	@RequestMapping(path = "getplayerbyname.do", method = RequestMethod.GET)
-	public String getPlayerByName(Model model, String player) {
-		model.addAttribute("player", dao.getPlayer(player));
-		return "player";
-	}
-	
-	@RequestMapping(path = "newhouse.do", method = RequestMethod.GET)
-	public String addNewHouse(Model model, House newHouse) {
-		model.addAttribute("houses", dao.addHouse(newHouse));
-		return "newhouse";
-	}
-	
-	@RequestMapping(path = "newplayer.do", method = RequestMethod.GET)
-	public String addNewPlayer(Model model, Player newPlayer) {
-		model.addAttribute("houses", dao.addPlayer(newPlayer));
-		return "newplayer";
-	}
-	
-	@RequestMapping(path = "retrieve.do", method = RequestMethod.GET)
-	public String retrievePlayer(Model model, int id) {
-		model.addAttribute("houses", dao.getHouse());
-		return "home";
-	}
+//	@RequestMapping(path = "getplayerbyname.do", method = RequestMethod.GET)
+//	public String getPlayerByName(Model model, String player) {
+//		model.addAttribute("player", dao.getPlayer(player));
+//		return "player";
+//	}
+//	
+//	@RequestMapping(path = "newhouse.do", method = RequestMethod.GET)
+//	public String addNewHouse(Model model, House newHouse) {
+//		model.addAttribute("houses", dao.addHouse(newHouse));
+//		return "newhouse";
+//	}
+//	
+//	@RequestMapping(path = "newplayer.do", method = RequestMethod.GET)
+//	public String addNewPlayer(Model model, Player newPlayer) {
+//		model.addAttribute("houses", dao.addPlayer(newPlayer));
+//		return "newplayer";
+//	}
+//	
+//	@RequestMapping(path = "retrieve.do", method = RequestMethod.GET)
+//	public String retrievePlayer(Model model, int id) {
+//		model.addAttribute("houses", dao.getHouse());
+//		return "home";
+//	}
 
 	
 }
