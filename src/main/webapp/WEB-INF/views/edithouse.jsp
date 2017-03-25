@@ -10,14 +10,14 @@
 </head>
 <body>
 
-<a href="welcome.do">Home</a>
+<h1><a href="welcome.do">Home</a></h1>
 <h1>Editing ${house.name}</h1>
 	<form action="editHouse.do" method="POST">
 		House Name: <input type="text" name="name" value="${house.houseName}"/><br>
 		Castle Name: <input type="text" name="name" value="${house.castleName}"/><br>
 		House Location: <input type="text" name="location" value="${house.location}"/><br>
 		Head of House: <input type="text" name="headOfHouse" value="${house.headOfHouse}"/><br> 
-		<button type="submit" value="Edit Operator">Save changes to ${house.houseName}</button>
+		<button type="submit" value="Edit">Save changes to ${house.houseName}</button>
 	</form>
 </body>
 </html>

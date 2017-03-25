@@ -10,10 +10,13 @@
 </head>
 <body>
 	<form action="newplayer.do" method=POST>
-		Character First Name: <input type="text" name="firstName"/><br>
-		Character Last Name: <input type="text" name="lastName"/><br>
-		Character Nickname: <input type="text" name="nickName"/><br> 
-		<button type="submit" value="Edit Character">Save changes to ${player.firstName}</button>
-		
+		Character First Name: <input type="text" name="firstName" /><br>
+		Character Last Name: <input type="text" name="lastName" /><br>
+		Character Nickname: <input type="text" name="nickName" /><br>
+		<button type="submit" value="Edit Character">Save changes to
+			${player.firstName}</button>
+	</form>
+	<a href="welcome.do">Home</a>
+
 </body>
 </html>

@@ -16,6 +16,6 @@
 		Head of House: <input type="text" name="headOfHouse"/><br> 
 		<button type="submit" value="Add New House">New House</button>		
 	</form>
-	<a href="home.do">Home</a>
+	<a href="welcome.do">Home</a>
 </body>
 </html>

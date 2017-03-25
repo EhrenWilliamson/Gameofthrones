@@ -82,7 +82,7 @@ public class HomeController {
 	@RequestMapping(path="editHouse.do", method = RequestMethod.POST)
 		public String editAndSaveHouse(Model model, House house){
 		model.addAttribute(dao.editHouse(house));
-		return "player";
+		return "house";
 	}
 	
 	@RequestMapping(path="editPlayer.do", method = RequestMethod.POST)
