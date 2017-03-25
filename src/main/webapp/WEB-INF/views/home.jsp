@@ -20,8 +20,8 @@
 	<a href="newhouse.do">Add a New House</a><br>
 	<a href="newplayer.do">Add a New Character</a><br>
 	
-	<c:forEach var="house" items="${houses}">
+<%-- 	<c:forEach var="house" items="${houses}">
 		<h2><a href="retrieve.do?abr=${house.id}">${house.houseName}</a></h2><br>
-	</c:forEach>
+	</c:forEach> --%>
 </body>
 </html>

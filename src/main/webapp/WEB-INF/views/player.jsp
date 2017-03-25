@@ -6,22 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${player.name}</title>
+<title>${player.firstName} ${player.lastName}</title>
 </head>
 <body>
-	<form action="gethousebyname.do" method="GET">
-		House: <input type="text" name="house" /> <input type="submit"
-			value="Search" />
-	</form>
-	<form action="getplayerbyname.do" method="GET">
-		Character: <input type="text" name="player" /> <input type="submit"
-			value="Search" />
-	</form>
-	<a href="newhouse.do">Add a New House</a><br>
-	<a href="newplayer.do">Add a New Character</a><br>
-	
-	<c:forEach var="house" items="${houses}">
-		<h2><a href="retrieve.do?abr=${house.id}">${house.name}</a></h2><br>
-	</c:forEach>
-</body>
+	<h1>${player.firstName} ${player.lastName}</h1>
+	<h3>${player.nickName}</h3>
+	<h3>${player.status}</h3>
 </html>

@@ -6,15 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${house.name}</title>
+<title>${house.houseName}</title>
 </head>
 <body>
-	<h1>${house.name}</h1>
+	<h1>${house.houseName}</h1>
 	<h3>${house.location}</h3>
 	<h3>${house.headOfHouse}</h3>
 	
-	<c:forEach var="house" items="${houses}">
-		<h2><a href="retrieve.do?abr=${house.id}">${house.name}</a></h2><br>
-	</c:forEach>
+<%-- 	<c:forEach var="house" items="${houses}">
+		<h2><a href="retrieve.do?abr=${house.id}">${house.houseName}</a></h2><br>
+	</c:forEach> --%>
 </body>
 </html>

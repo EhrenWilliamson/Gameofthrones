@@ -39,12 +39,12 @@ public class HomeController {
 		return "house";
 	}
 	
-//	@RequestMapping(path = "getplayerbyname.do", method = RequestMethod.GET)
-//	public String getPlayerByName(Model model, String player) {
-//		model.addAttribute("player", dao.getPlayer(player));
-//		return "player";
-//	}
-//	
+	@RequestMapping(path = "getplayerbyname.do", method = RequestMethod.GET)
+	public String getPlayerByName(Model model, String player) {
+		model.addAttribute("player", dao.getPlayer(player));
+		return "player";
+	}
+	
 //	@RequestMapping(path = "newhouse.do", method = RequestMethod.GET)
 //	public String addNewHouse(Model model, House newHouse) {
 //		model.addAttribute("houses", dao.addHouse(newHouse));
