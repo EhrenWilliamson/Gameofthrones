@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.sd.Westeros.data.House;
+import com.sd.Westeros.data.Player;
 import com.sd.Westeros.data.WesterosDAO;
+import com.sd.Westeros.data.WesterosDAOImpl;
 
 @Controller
 @SessionAttributes("obj")
@@ -60,6 +63,11 @@ public class HomeController {
 		model.addAttribute("houses", dao.getHouse());
 		return "home";
 	}
-
+	
+	@RequestMapping(path="editHouse.do", method = RequestMethod.POST)
+		public String editAndSaveHouse(Model model, House house){
+			return null;
+		
+	}
 	
 }

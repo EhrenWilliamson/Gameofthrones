@@ -9,19 +9,18 @@
 <title>Edit ${player.name}</title>
 </head>
 <body>
-	<form action="gethousebyname.do" method="GET">
+	<a href="http://localhost:3306/GoTDB"></a>
+<h1>Editing ${player.name}</h1>
+	<form action="editPlayer.do" method="POST">
 		House: <input type="text" name="house" /> <input type="submit"
 			value="Search" />
+			
+			
+		Character's First Name: <input type="text" name="firstName" value="${player.firstName}"/>
+		Characters's Last Name: <input type="text" name="lastName" value="${player.lastName}"/><br>
+		Character's Nickname: <input type="text" name="headOfHouse" value="${player.nickName}"/><br> 
+		<button type="submit" value="Edit Operator">Save changes to ${player.nickname}</button>
+		
 	</form>
-	<form action="getplayerbyname.do" method="GET">
-		Character: <input type="text" name="player" /> <input type="submit"
-			value="Search" />
-	</form>
-	<a href="newhouse.do">Add a New House</a><br>
-	<a href="newplayer.do">Add a New Character</a><br>
-	
-	<c:forEach var="house" items="${houses}">
-		<h2><a href="retrieve.do?abr=${house.id}">${house.name}</a></h2><br>
-	</c:forEach>
 </body>
 </html>

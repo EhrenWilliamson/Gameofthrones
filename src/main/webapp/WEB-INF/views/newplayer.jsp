@@ -9,19 +9,11 @@
 <title>Add a New Character</title>
 </head>
 <body>
-	<form action="gethousebyname.do" method="GET">
-		House: <input type="text" name="house" /> <input type="submit"
-			value="Search" />
-	</form>
-	<form action="getplayerbyname.do" method="GET">
-		Character: <input type="text" name="player" /> <input type="submit"
-			value="Search" />
-	</form>
-	<a href="newhouse.do">Add a New House</a><br>
-	<a href="newplayer.do">Add a New Character</a><br>
-	
-	<c:forEach var="house" items="${houses}">
-		<h2><a href="retrieve.do?abr=${house.id}">${house.name}</a></h2><br>
-	</c:forEach>
+	<form action="newplayer.do" method="POST">
+		Character First Name: <input type="text" name="firstName"/><br>
+		Character Last Name: <input type="text" name="lastName"/><br>
+		Character Nickname: <input type="text" name="nickName"/><br> 
+		<button type="submit" value="Edit Operator">Save changes to ${house.name}</button>
+		
 </body>
 </html>
