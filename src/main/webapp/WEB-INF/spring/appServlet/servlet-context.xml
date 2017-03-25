@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.westeros.myapp" />
+	<context:component-scan base-package="com.westeros.myapp com.sd.westeros.data" />
 	
 	
 	
