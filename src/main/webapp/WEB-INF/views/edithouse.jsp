@@ -10,21 +10,14 @@
 </head>
 <body>
 
-<a href="http://localhost:3306/GoTDB"></a>
+<a href="welcome.do">Home</a>
 <h1>Editing ${house.name}</h1>
 	<form action="editHouse.do" method="POST">
-		House: <input type="text" name="house" /> <input type="submit"
-			value="Search" />
-			
-			
-		House Name: <input type="text" name="name" value="${house.name}"/><br>
+		House Name: <input type="text" name="name" value="${house.houseName}"/><br>
+		Castle Name: <input type="text" name="name" value="${house.castleName}"/><br>
 		House Location: <input type="text" name="location" value="${house.location}"/><br>
 		Head of House: <input type="text" name="headOfHouse" value="${house.headOfHouse}"/><br> 
-		<button type="submit" value="Edit Operator">Save changes to ${house.name}</button>
-		
+		<button type="submit" value="Edit Operator">Save changes to ${house.houseName}</button>
 	</form>
-	
-	
-	
 </body>
 </html>

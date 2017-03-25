@@ -12,4 +12,5 @@
 	<h1>${player.firstName} ${player.lastName}</h1>
 	<h3>${player.nickName}</h3>
 	<h3>${player.status}</h3>
+	<a href="goEditPlayerForm.do">Edit ${player.firstName}</a>
 </html>

@@ -10,16 +10,13 @@
 </head>
 <body>
 	<a href="http://localhost:3306/GoTDB"></a>
-<h1>Editing ${player.name}</h1>
-	<form action="editPlayer.do" method="POST">
-		House: <input type="text" name="house" /> <input type="submit"
-			value="Search" />
-			
+<h1>Editing ${player.firstName} ${player.lastName}</h1>
+	<form action="editPlayer.do" method="GET">
 			
 		Character's First Name: <input type="text" name="firstName" value="${player.firstName}"/>
 		Characters's Last Name: <input type="text" name="lastName" value="${player.lastName}"/><br>
 		Character's Nickname: <input type="text" name="headOfHouse" value="${player.nickName}"/><br> 
-		<button type="submit" value="Edit Operator">Save changes to ${player.nickname}</button>
+		<button type="submit" value="Edit">Save changes to ${player.nickName}</button>
 		
 	</form>
 </body>

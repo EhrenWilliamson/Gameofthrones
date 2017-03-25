@@ -12,6 +12,7 @@
 	<h1>${house.houseName}</h1>
 	<h3>${house.location}</h3>
 	<h3>${house.headOfHouse}</h3>
+	<a href="goEditHouseForm.do">Edit ${house.houseName}</a>
 	
 <%-- 	<c:forEach var="house" items="${houses}">
 		<h2><a href="retrieve.do?abr=${house.id}">${house.houseName}</a></h2><br>

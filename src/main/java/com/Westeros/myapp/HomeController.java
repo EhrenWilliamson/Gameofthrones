@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.sd.westeros.data.House;
 import com.sd.westeros.data.Player;
@@ -45,29 +47,65 @@ public class HomeController {
 		return "player";
 	}
 	
-	@RequestMapping(path = "newhouse.do", method = RequestMethod.GET)
+	@RequestMapping(path="goNewHouseForm.do", method = RequestMethod.GET)
+	public String getHouseForm(Model model) {
+		return "newhouse";
+	}
+	
+	@RequestMapping(path="goNewPlayerForm.do", method = RequestMethod.GET)
+	public String getEditPlayerForm(Model model) {
+		return "newplayer";
+	}
+	
+	@RequestMapping(path="goEditHouseForm.do", method = RequestMethod.GET)
+	public String getEditHouseForm(Model model) {
+		return "edithouse";
+	}
+	
+	@RequestMapping(path="goEditPlayerForm.do", method = RequestMethod.GET)
+	public String getPlayerForm(Model model) {
+		return "editplayer";
+	}
+	
+	@RequestMapping(path = "newhouse.do", method = RequestMethod.POST)
 	public String addNewHouse(Model model, House newHouse) {
-		model.addAttribute("houses", dao.addHouse(newHouse));
+		model.addAttribute(dao.addHouse(newHouse));
 		return "home";
 	}
 	
-	@RequestMapping(path = "newplayer.do", method = RequestMethod.GET)
+	@RequestMapping(path = "newplayer.do", method = RequestMethod.POST)
 	public String addNewPlayer(Model model, Player newPlayer) {
-		model.addAttribute("houses", dao.addPlayer(newPlayer));
+		model.addAttribute(dao.addPlayer(newPlayer));
 		return "home";
 	}
 	
-//	@RequestMapping(path = "retrieve.do", method = RequestMethod.GET)
-//	public String retrievePlayer(Model model, int id) {
-//		model.addAttribute("houses", dao.getHouse());
-//		return "home";
-//	}
+	@RequestMapping(path="editHouse.do", method = RequestMethod.POST)
+		public String editAndSaveHouse(Model model, House house){
+		model.addAttribute(dao.editHouse(house));
+		return "player";
+	}
+	
+	@RequestMapping(path="editPlayer.do", method = RequestMethod.POST)
+	public String editAndSavePlayer(Model model, Player player){
+		model.addAttribute(dao.editPlayer(player));
+		return "player";
+	}
+	
+//	@RequestMapping(path="deleteCharacter.do", method = RequestMethod.POST)
+//    public ModelAndView deletePlayer(@RequestParam("id") int id){
+//        dao.deletePlayer(id);
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("home");
+//        return null;
+//    }
 //	
-//	@RequestMapping(path="editHouse.do", method = RequestMethod.POST)
-//		public String editAndSaveHouse(Model model, House house){
-//			return null;
-//		
-//	}
+//	@RequestMapping(path="deleteHouse.do", method = RequestMethod.POST)
+//    public ModelAndView deleteHouse(@RequestParam("id") int id){
+//        dao.deleteHouse(id);
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("home");
+//        return null;
+//    }
 
 //	@RequestMapping(path = "retrieve.do", method = RequestMethod.GET)
 //	public String retrievePlayer(Model model, int id) {

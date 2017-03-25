@@ -12,5 +12,7 @@ Player addPlayer(Player player);
 //void deleteHouse(House house);
 List<House> getHouses();
 //List<Player> getPlayers();
+House editHouse(House house);
+Player editPlayer(Player player);
 
 }

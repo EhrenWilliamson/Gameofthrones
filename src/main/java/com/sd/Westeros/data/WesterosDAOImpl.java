@@ -26,7 +26,8 @@ public class WesterosDAOImpl implements WesterosDAO {
 	@Override
 	public House getHouse(String h) {
 		House house = null;
-		String sql = "SELECT id, castle_name, location, head_of_house " + "FROM house WHERE house_name = ?";
+		String sql = "SELECT id, castle_name, location, head_of_house " 
+					+ "FROM house WHERE house_name = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -122,7 +123,7 @@ public class WesterosDAOImpl implements WesterosDAO {
 			stmt.setString(3, player.getNickName());
 			stmt.setString(4, player.getStatus());
 			int rowsUpdated = stmt.executeUpdate();
-			if(rowsUpdated == 1) {
+			if (rowsUpdated == 1) {
 				conn.commit();
 				sql = "SELECT LAST_INSERT_ID()";
 				PreparedStatement getId = conn.prepareStatement(sql);
@@ -131,7 +132,7 @@ public class WesterosDAOImpl implements WesterosDAO {
 			} else {
 				conn.rollback();
 			}
-			
+
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
@@ -143,8 +144,8 @@ public class WesterosDAOImpl implements WesterosDAO {
 	@Override
 	public House addHouse(House house) {
 
-		String sql = "INSERT INTO house (house_name, castle_name, location, head_of_house)" 
-					+ "VALUES (?,?,?,?)";
+		String sql = "INSERT INTO house (house_name, castle_name, location, "
+					+ "head_of_house) VALUES (?,?,?,?)";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			conn.setAutoCommit(false);
@@ -154,7 +155,7 @@ public class WesterosDAOImpl implements WesterosDAO {
 			stmt.setString(3, house.getLocation());
 			stmt.setString(4, house.getHeadOfHouse());
 			int rowsUpdated = stmt.executeUpdate();
-			if(rowsUpdated == 1) {
+			if (rowsUpdated == 1) {
 				conn.commit();
 				sql = "SELECT LAST_INSERT_ID()";
 				PreparedStatement getId = conn.prepareStatement(sql);
@@ -163,7 +164,7 @@ public class WesterosDAOImpl implements WesterosDAO {
 			} else {
 				conn.rollback();
 			}
-			
+
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
@@ -171,68 +172,69 @@ public class WesterosDAOImpl implements WesterosDAO {
 		}
 		return house;
 	}
-	// public House editHouse(House house) {
-	//
-	// String sql = "UPDATE house SET name = ?, location = ?, headofhouse = ?
-	// WHERE id = ?";
-	// try {
-	// Connection conn = DriverManager.getConnection(url, user, pass);
-	// PreparedStatement stmt = conn.prepareStatement(sql);
-	// conn.setAutoCommit(false);
-	// stmt.setString(1, house.getName());
-	// stmt.setString(2, house.getLocation());
-	// stmt.setString(3, house.getHeadOfHouse());
-	// stmt.setInt(4, house.getId());
-	// int rowsUpdated = stmt.executeUpdate();
-	//
-	// if (rowsUpdated == 1) {
-	// conn.commit();
-	// } else {
-	// conn.rollback();
-	// }
-	//
-	// stmt.close();
-	// conn.close();
-	//
-	// } catch (SQLException e) {
-	// e.printStackTrace();
-	// }
-	//
-	// return house;
-	// }
-	//
-	// public Player editPlayer(Player player) {
-	//
-	// String sql = "UPDATE player SET first_name = ?, last_name = ?, nickname =
-	// ?, "
-	// + "player_status = ? WHERE id = ?";
-	// try {
-	// Connection conn = DriverManager.getConnection(url, user, pass);
-	// PreparedStatement stmt = conn.prepareStatement(sql);
-	// conn.setAutoCommit(false);
-	// stmt.setString(1, player.getFirstName());
-	// stmt.setString(2, player.getLastName());
-	// stmt.setString(3, player.getNickName());
-	// stmt.setString(4, player.getPlayerStatus());
-	// stmt.setInt(5, player.getId());
-	// int rowsUpdated = stmt.executeUpdate();
-	//
-	// if (rowsUpdated == 1) {
-	// conn.commit();
-	// } else {
-	// conn.rollback();
-	// }
-	//
-	// stmt.close();
-	// conn.close();
-	//
-	// } catch (SQLException e) {
-	// e.printStackTrace();
-	// }
-	//
-	// return player;
-	// }
-	//
+
+	public House editHouse(House house) {
+
+		String sql = "UPDATE house SET house_name = ?, castle_name, location = ?, "
+					+ "head_of_house = ? WHERE id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			conn.setAutoCommit(false);
+			stmt.setString(1, house.getHouseName());
+			stmt.setString(2, house.getCastleName());
+			stmt.setString(3, house.getLocation());
+			stmt.setString(4, house.getHeadOfHouse());
+			stmt.setInt(5, house.getId());
+			int rowsUpdated = stmt.executeUpdate();
+
+			if (rowsUpdated == 1) {
+				conn.commit();
+			} else {
+				conn.rollback();
+			}
+
+			stmt.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return house;
+	}
+
+	public Player editPlayer(Player player) {
+	
+	 String sql = "UPDATE player SET first_name = ?, last_name = ?, nickname = ?, "
+	 			+ "status = ? WHERE id = ?";
+	 try {
+	 Connection conn = DriverManager.getConnection(url, user, pass);
+	 PreparedStatement stmt = conn.prepareStatement(sql);
+	 conn.setAutoCommit(false);
+	 stmt.setString(1, player.getFirstName());
+	 stmt.setString(2, player.getLastName());
+	 stmt.setString(3, player.getNickName());
+	 stmt.setString(4, player.getStatus());
+	 stmt.setInt(5, player.getId());
+	 int rowsUpdated = stmt.executeUpdate();
+	
+	 if (rowsUpdated == 1) {
+	 conn.commit();
+	 } else {
+	 conn.rollback();
+	 }
+	
+	 stmt.close();
+	 conn.close();
+	
+	 } catch (SQLException e) {
+	 e.printStackTrace();
+	 }
+	
+	 return player;
+	 }
+
 	// @Override
 	// public List<Player> getPlayersByHouse(House house) {
 	// List<Player> players = new ArrayList<>();
@@ -306,17 +308,5 @@ public class WesterosDAOImpl implements WesterosDAO {
 	// return houses;
 	//
 	// }
-	//
-	// @Override
-	// public Player getPlayer(String player) {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
-	//
-	//
-	// @Override
-	// public List<Player> getPlayers() {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
+
 }

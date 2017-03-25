@@ -9,12 +9,12 @@
 <title>Add a New House</title>
 </head>
 <body>
-	<form action="newhouse.do" method="GET">
+	<form action="newhouse.do" method="POST">
 		House Name: <input type="text" name="houseName"/><br>
 		Castle Name: <input type="text" name="castleName"/><br>
 		House Location: <input type="text" name="location"/><br>
 		Head of House: <input type="text" name="headOfHouse"/><br> 
-		<button type="submit" value="Add New House"></button>		
+		<button type="submit" value="Add New House">New House</button>		
 	</form>
 	<a href="home.do">Home</a>
 </body>
