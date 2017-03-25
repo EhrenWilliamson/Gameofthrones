@@ -26,8 +26,8 @@ public class WesterosDAOImpl implements WesterosDAO {
 	@Override
 	public House getHouse(String h) {
 		House house = null;
-		String sql = "SELECT id, house_name, castle_name, location, head_of_house "
-						+ "FROM house WHERE name = ?";
+		String sql = "SELECT id, castle_name, location, head_of_house "
+						+ "FROM house WHERE house_name = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -37,9 +37,10 @@ public class WesterosDAOImpl implements WesterosDAO {
 			if (rs.next()) {
 				house = new House();
 				house.setId(rs.getInt(1));
-				house.setName(h);
+				house.setHouseName(h);
 				house.setLocation(rs.getString(2));
-				house.setHeadOfHouse(rs.getString(3));
+				house.setLocation(rs.getString(3));
+				house.setHeadOfHouse(rs.getString(4));
 				
 			}
 			rs.close();
@@ -275,9 +276,9 @@ public class WesterosDAOImpl implements WesterosDAO {
 				houses = new ArrayList<>();
 				house.setId(rs.getInt(1));
 				house.setHouseName(rs.getString(2));
-				house.setLocation(rs.getString(2));
-				house.setLocation(rs.getString(2));
-				house.setHeadOfHouse(rs.getString(3));
+				house.setLocation(rs.getString(3));
+				house.setLocation(rs.getString(4));
+				house.setHeadOfHouse(rs.getString(5));
 				houses.add(house);
 			}
 			rs.close();
