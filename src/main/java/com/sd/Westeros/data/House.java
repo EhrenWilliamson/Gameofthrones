@@ -1,4 +1,4 @@
-package com.sd.westeros.data;
+package com.sd.Westeros.data;
 
 public class House {
 	

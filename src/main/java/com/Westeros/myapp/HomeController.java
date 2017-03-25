@@ -1,4 +1,4 @@
-package com.westeros.myapp;
+package com.Westeros.myapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,6 @@ import com.sd.Westeros.data.WesterosDAOImpl;
 import com.sd.westeros.data.House;
 import com.sd.westeros.data.Player;
 import com.sd.westeros.data.WesterosDAO;
->>>>>>> 80006b7e6a75a30de9076c638ba1a448acc79e55
 
 //@SessionAttributes("obj")
 @Controller
@@ -46,7 +45,6 @@ public class HomeController {
 		return "house";
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(path = "getplayerbyname.do", method = RequestMethod.GET)
 	public String getPlayerByName(Model model, String player) {
 		model.addAttribute("player", dao.getPlayer(player));
@@ -76,7 +74,6 @@ public class HomeController {
 			return null;
 		
 	}
-=======
 //	@RequestMapping(path = "getplayerbyname.do", method = RequestMethod.GET)
 //	public String getPlayerByName(Model model, String player) {
 //		model.addAttribute("player", dao.getPlayer(player));
@@ -101,6 +98,5 @@ public class HomeController {
 //		return "home";
 //	}
 
->>>>>>> 80006b7e6a75a30de9076c638ba1a448acc79e55
 	
 }

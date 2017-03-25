@@ -1,4 +1,4 @@
-package com.sd.westeros.data;
+package com.sd.Westeros.data;
 import java.util.List;
 
 public interface WesterosDAO {
