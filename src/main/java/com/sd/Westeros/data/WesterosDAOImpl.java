@@ -11,8 +11,8 @@ import java.util.List;
 public class WesterosDAOImpl implements WesterosDAO {
 
 	private static String url = "jdbc:mysql://localhost:3306/gotdb";
-	private String user = "student";
-	private String pass = "student";
+	private String user = "root";
+	private String pass = "root";
 
 	public WesterosDAOImpl() {
 		try {
@@ -26,18 +26,21 @@ public class WesterosDAOImpl implements WesterosDAO {
 	@Override
 	public House getHouse(String h) {
 		House house = null;
-		String sql = "SELECT id, location, headOfHouse FROM house WHERE name = ?";
+		String sql = "SELECT id, house_name, castle_name, location, head_of_house "
+						+ "FROM house WHERE name = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, h);
 			ResultSet rs = stmt.executeQuery();
+						
 			if (rs.next()) {
 				house = new House();
 				house.setId(rs.getInt(1));
 				house.setName(h);
 				house.setLocation(rs.getString(2));
 				house.setHeadOfHouse(rs.getString(3));
+				
 			}
 			rs.close();
 			stmt.close();
@@ -261,7 +264,7 @@ public class WesterosDAOImpl implements WesterosDAO {
 	public List<House> getHouses() {
 
 		List<House> houses = null;
-		
+				
 		String sql = "SELECT id, house_name, castle_name, location, head_of_house FROM house";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
