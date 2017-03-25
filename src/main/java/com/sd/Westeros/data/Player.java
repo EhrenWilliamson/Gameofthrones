@@ -1,6 +1,8 @@
-package com.sd.Westeros.data;
+package com.sd.westeros.data;
 
 public class Player {
+	
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String nickName;
@@ -63,4 +65,11 @@ public class Player {
 	public Player() {
 
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 }

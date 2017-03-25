@@ -1,12 +1,12 @@
-package com.sd.Westeros.data;
+package com.sd.westeros.data;
 import java.util.List;
 
 public interface WesterosDAO {
 
 House getHouse(String house);
 Player getPlayer (String player);
-//Player addPlayer(Player player);
-//House addHouse(House house);
+House addHouse(House house);
+Player addPlayer(Player player);
 //List<Player> getPlayersByHouse(House house);
 //void deletePlayer(Integer id);
 //void deleteHouse(House house);
