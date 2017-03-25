@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-<<<<<<< HEAD
 import com.sd.Westeros.data.House;
 import com.sd.Westeros.data.Player;
 import com.sd.Westeros.data.WesterosDAO;
 import com.sd.Westeros.data.WesterosDAOImpl;
-=======
 import com.sd.westeros.data.House;
 import com.sd.westeros.data.Player;
 import com.sd.westeros.data.WesterosDAO;
