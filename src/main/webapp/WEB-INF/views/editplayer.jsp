@@ -9,8 +9,6 @@
 <title>Edit ${player.name}</title>
 </head>
 <body>
-
-<a href="welcome.do">Player</a>
 <h1>Editing ${house.name}</h1>
 	<form action="editPlayer.do" method="POST">
 		First Name: <input type="text" name="name" value="${player.firstName}"/><br>
@@ -19,5 +17,7 @@
 		Status: <input type="text" name="headOfHouse" value="${player.status}"/><br> 
 		<button type="submit" value="Edit">Save changes to ${player.firstName}</button>
 	</form>
-</body>
+	<a href="welcome.do">Home</a>
+<!-- 	comment
+ --></body>
 </html>

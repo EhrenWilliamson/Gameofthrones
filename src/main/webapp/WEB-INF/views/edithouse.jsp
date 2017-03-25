@@ -19,5 +19,6 @@
 		Head of House: <input type="text" name="headOfHouse" value="${house.headOfHouse}"/><br> 
 		<button type="submit" value="Edit">Save changes to ${house.houseName}</button>
 	</form>
+	<a href="welcome.do">Home</a>	
 </body>
 </html>
