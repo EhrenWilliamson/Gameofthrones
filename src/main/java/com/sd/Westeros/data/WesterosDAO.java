@@ -10,7 +10,7 @@ House getHouse(String house);
 //List<Player> getPlayersByHouse(House house);
 //void deletePlayer(Integer id);
 //void deleteHouse(House house);
-//List<House> getHouses();
+List<House> getHouses();
 //List<Player> getPlayers();
 
 }

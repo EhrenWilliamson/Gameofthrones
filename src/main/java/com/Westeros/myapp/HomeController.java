@@ -11,7 +11,7 @@ import com.sd.westeros.data.House;
 import com.sd.westeros.data.Player;
 import com.sd.westeros.data.WesterosDAO;
 
-@SessionAttributes("obj")
+//@SessionAttributes("obj")
 @Controller
 public class HomeController {
 	
@@ -27,14 +27,13 @@ public class HomeController {
 		this.dao = w;
 	}
 
-//	@RequestMapping(path = "welcome.do", method = RequestMethod.GET)
-	@RequestMapping("*.do")
+	@RequestMapping(path = "welcome.do", method = RequestMethod.GET)
 	public String getHomePage(Model model) {
-//		model.addAttribute("houses", dao.getHouses());
+		model.addAttribute("houses", dao.getHouses());
 		return "home";
 	}
 	
-//	@RequestMapping(path = "gethousebyname.do", method = RequestMethod.GET)
+	@RequestMapping(path = "gethousebyname.do", method = RequestMethod.GET)
 	public String getHouseByName(Model model, String house) {
 		model.addAttribute("house", dao.getHouse(house));
 		return "house";
