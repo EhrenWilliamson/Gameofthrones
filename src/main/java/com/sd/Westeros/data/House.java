@@ -1,35 +1,45 @@
-package com.sd.Westeros.data;
+package com.sd.westeros.data;
 
 public class House {
 	
 	private int id;
-	private String name;
+	private String houseName;
+	private String castleName;
 	private String location;
 	private String headOfHouse;
+	
+	public House(){}
 
-	@Override
-	public String toString() {
-		return "House [name=" + name + ", location=" + location + ", headOfHouse=" + headOfHouse + "]";
-	}
-
-	public String getHeadOfHouse() {
-		return headOfHouse;
-	}
-
-	public void setHeadOfHouse(String headOfHouse) {
+	public House(int id, String houseName, String castleName, String location, String headOfHouse) {
+		this.id = id;
+		this.houseName = houseName;
+		this.castleName = castleName;
+		this.location = location;
 		this.headOfHouse = headOfHouse;
 	}
 
-	public House() {
-
+	public int getId() {
+		return id;
 	}
 
-	public String getName() {
-		return name;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getHouseName() {
+		return houseName;
+	}
+
+	public void setHouseName(String houseName) {
+		this.houseName = houseName;
+	}
+
+	public String getCastleName() {
+		return castleName;
+	}
+
+	public void setCastleName(String castleName) {
+		this.castleName = castleName;
 	}
 
 	public String getLocation() {
@@ -40,11 +50,18 @@ public class House {
 		this.location = location;
 	}
 
-	public int getId() {
-		return id;
+	public String getHeadOfHouse() {
+		return headOfHouse;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setHeadOfHouse(String headOfHouse) {
+		this.headOfHouse = headOfHouse;
 	}
+
+	@Override
+	public String toString() {
+		return "House [id=" + id + ", houseName=" + houseName + ", castleName=" + castleName
+				+ ", location=" + location + ", headOfHouse=" + headOfHouse + "]";
+	}
+	
 }

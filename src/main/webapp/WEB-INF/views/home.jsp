@@ -21,7 +21,7 @@
 	<a href="newplayer.do">Add a New Character</a><br>
 	
 	<c:forEach var="house" items="${houses}">
-		<h2><a href="retrieve.do?abr=${house.id}">${house.name}</a></h2><br>
+		<h2><a href="retrieve.do?abr=${house.id}">${house.houseName}</a></h2><br>
 	</c:forEach>
 </body>
 </html>
