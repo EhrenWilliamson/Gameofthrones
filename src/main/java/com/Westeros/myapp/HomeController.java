@@ -3,27 +3,33 @@ package com.westeros.myapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.sd.westeros.data.House;
 import com.sd.westeros.data.Player;
 import com.sd.westeros.data.WesterosDAO;
 
 
-//@SessionAttributes("obj")
 @Controller
+@SessionAttributes({"house","player"})
 public class HomeController {
 	
 	@Autowired
 	private WesterosDAO dao;
-
-//	@ModelAttribute("obj")
-//	public House initHouse() {
-//		return new House();
-//	}
+ 
+	@ModelAttribute("house")
+	public House house(){
+		return new House();
+	}
+	
+	@ModelAttribute("player")
+	public Player player(){
+		return new Player();
+	}
+	
 
 	public void setWesterosDAO(WesterosDAO w) {
 		this.dao = w;
@@ -37,15 +43,31 @@ public class HomeController {
 	
 	@RequestMapping(path = "gethousebyname.do", method = RequestMethod.GET)
 	public String getHouseByName(Model model, String house) {
-		model.addAttribute("house", dao.getHouse(house));
-		return "house";
+		House h = dao.getHouse(house);
+		
+		if (h != null) {
+			model.addAttribute("house", h);
+			return "house";
+		} else {
+			model.addAttribute("houseNotFound", true);
+			return "home";
+		}
+		
 	}
 	
 	@RequestMapping(path = "getplayerbyname.do", method = RequestMethod.GET)
 	public String getPlayerByName(Model model, String player) {
-		model.addAttribute("player", dao.getPlayer(player));
-		return "player";
+		
+		Player p = dao.getPlayer(player); 
+		if (p != null) {
+			model.addAttribute("player", p);
+			return "player";
+		} else {
+			model.addAttribute("playerNotFound", true);
+			return "home";
+		}
 	}
+
 	
 	@RequestMapping(path="goNewHouseForm.do", method = RequestMethod.GET)
 	public String getHouseForm(Model model) {
@@ -58,13 +80,29 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="goEditHouseForm.do", method = RequestMethod.GET)
-	public String getEditHouseForm(Model model) {
+	public String getEditHouseForm(Model model, @ModelAttribute("house") House house) {
+		model.addAttribute(house);
 		return "edithouse";
 	}
 	
 	@RequestMapping(path="goEditPlayerForm.do", method = RequestMethod.GET)
-	public String getPlayerForm(Model model) {
+	public String getPlayerForm(Model model, @ModelAttribute("player") Player player) {
+		model.addAttribute(player);
 		return "editplayer";
+	}
+	
+	@RequestMapping(path="goDeleteHouse.do", method = RequestMethod.GET)
+	public String getDeleteHouse(Model model, int id) {
+		System.out.println(id);
+		dao.deleteHouse(id);
+		return "home";
+	}
+	
+	@RequestMapping(path="goDeletePlayer.do", method = RequestMethod.GET)
+	public String getDeletePlayer(Model model, int id) {
+		System.out.println(id);
+		dao.deletePlayer(id);
+		return "home";
 	}
 	
 	@RequestMapping(path = "newhouse.do", method = RequestMethod.POST)
@@ -80,14 +118,14 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="editHouse.do", method = RequestMethod.POST)
-		public String editAndSaveHouse(Model model, House house){
-		model.addAttribute(dao.editHouse(house));
+		public String editAndSaveHouse(Model model, House editHouse){
+		model.addAttribute(dao.editHouse(editHouse));
 		return "house";
 	}
 	
 	@RequestMapping(path="editPlayer.do", method = RequestMethod.POST)
-	public String editAndSavePlayer(Model model, Player player){
-		model.addAttribute(dao.editPlayer(player));
+	public String editAndSavePlayer(Model model, Player editPlayer){
+		model.addAttribute(dao.editPlayer(editPlayer));
 		return "player";
 	}
 	

@@ -9,13 +9,21 @@
 <title>${house.houseName}</title>
 </head>
 <body>
-	<h1>${house.houseName}</h1>
-	<h3>${house.location}</h3>
-	<h3>${house.headOfHouse}</h3>
-	<a href="goEditHouseForm.do">Edit ${house.houseName}</a>
-	
-<%-- 	<c:forEach var="house" items="${houses}">
-		<h2><a href="retrieve.do?abr=${house.id}">${house.houseName}</a></h2><br>
-	</c:forEach> --%>
+	<c:choose>
+		<c:when test="${!empty house}">
+			<h1>${house.houseName}</h1>
+			<h3>${house.location}</h3>
+			<h3>${house.headOfHouse}</h3>
+			<a href="goEditHouseForm.do?id=${house.id}">Edit
+				${house.houseName}</a>
+			<a href="goDeleteHouse.do?id=${house.id}">Delete
+				${house.houseName}</a>
+			<a href="welcome.do">Home</a>
+		</c:when>
+		<c:otherwise>
+			<h1>House not found!</h1>
+			<a href="welcome.do">Return Home</a>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

@@ -1,5 +1,9 @@
 package com.sd.westeros.data;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
 public class House {
 	
 	private int id;

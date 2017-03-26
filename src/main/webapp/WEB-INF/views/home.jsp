@@ -9,6 +9,24 @@
 <title>Westeros</title>
 </head>
 <body>
+
+	<c:choose>
+		<c:when test="${ houseNotFound}">
+			<h3>
+				<em>Sorry, this house has been destroyed by Ser Pounce.</em>
+			</h3>
+		</c:when>
+	</c:choose>
+	<c:choose>
+		<c:when test="${playerNotFound}">
+			<h3>
+				<em>Sorry, this character has been flayed by Ramsay Bolton.</em>
+			</h3>
+		</c:when>
+	</c:choose>
+
+
+
 	<form action="gethousebyname.do" method="GET">
 		House: <input type="text" name="house" /> <input type="submit"
 			value="Search" />
@@ -17,10 +35,12 @@
 		Character: <input type="text" name="player" /> <input type="submit"
 			value="Search" />
 	</form>
-	<a href="goNewHouseForm.do">Add a New House</a><br>
-	<a href="goNewPlayerForm.do">Add a New Character</a><br>
-	
-<%-- 	<c:forEach var="house" items="${houses}">
+	<a href="goNewHouseForm.do">Add a New House</a>
+	<br>
+	<a href="goNewPlayerForm.do">Add a New Character</a>
+	<br>
+
+	<%-- 	<c:forEach var="house" items="${houses}">
 		<h2><a href="retrieve.do?abr=${house.id}">${house.houseName}</a></h2><br>
 	</c:forEach> --%>
 </body>

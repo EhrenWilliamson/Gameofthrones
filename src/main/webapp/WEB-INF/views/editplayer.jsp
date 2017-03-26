@@ -6,10 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Edit ${player.name}</title>
+<title>Edit ${player.firstName}</title>
 </head>
 <body>
-<h1>Editing ${house.name}</h1>
+
+<h1>Editing ${player.firstName}</h1>
 	<form action="editPlayer.do" method="POST">
 		First Name: <input type="text" name="name" value="${player.firstName}"/><br>
 		Last Name: <input type="text" name="name" value="${player.lastName}"/><br>
@@ -18,6 +19,5 @@
 		<button type="submit" value="Edit">Save changes to ${player.firstName}</button>
 	</form>
 	<a href="welcome.do">Home</a>
-<!-- 	comment
- --></body>
+</body>
 </html>

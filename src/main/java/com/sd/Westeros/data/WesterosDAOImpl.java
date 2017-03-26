@@ -26,8 +26,7 @@ public class WesterosDAOImpl implements WesterosDAO {
 	@Override
 	public House getHouse(String h) {
 		House house = null;
-		String sql = "SELECT id, castle_name, location, head_of_house " 
-					+ "FROM house WHERE house_name = ?";
+		String sql = "SELECT id, castle_name, location, head_of_house " + "FROM house WHERE house_name = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -38,7 +37,7 @@ public class WesterosDAOImpl implements WesterosDAO {
 				house = new House();
 				house.setId(rs.getInt(1));
 				house.setHouseName(h);
-				house.setLocation(rs.getString(2));
+				house.setCastleName(rs.getString(2));
 				house.setLocation(rs.getString(3));
 				house.setHeadOfHouse(rs.getString(4));
 
@@ -55,7 +54,7 @@ public class WesterosDAOImpl implements WesterosDAO {
 	@Override
 	public Player getPlayer(String p) {
 		Player player = null;
-		String sql = "SELECT first_name, last_name, nickname, status FROM player "
+		String sql = "SELECT id, first_name, last_name, nickname, status FROM player "
 				+ "WHERE first_name=? OR nickname = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
@@ -65,10 +64,11 @@ public class WesterosDAOImpl implements WesterosDAO {
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				player = new Player();
-				player.setFirstName(rs.getString(1));
-				player.setLastName(rs.getString(2));
-				player.setNickName(rs.getString(3));
-				player.setStatus(rs.getString(4));
+				player.setId(rs.getInt(1));
+				player.setFirstName(rs.getString(2));
+				player.setLastName(rs.getString(3));
+				player.setNickName(rs.getString(4));
+				player.setStatus(rs.getString(5));
 
 			}
 			rs.close();
@@ -112,8 +112,7 @@ public class WesterosDAOImpl implements WesterosDAO {
 	@Override
 	public Player addPlayer(Player player) {
 
-		String sql = "INSERT INTO player (first_name, last_name, nickname, status)" 
-					+ "VALUES (?,?,?,?)";
+		String sql = "INSERT INTO player (first_name, last_name, nickname, status)" + "VALUES (?,?,?,?)";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			conn.setAutoCommit(false);
@@ -144,8 +143,7 @@ public class WesterosDAOImpl implements WesterosDAO {
 	@Override
 	public House addHouse(House house) {
 
-		String sql = "INSERT INTO house (house_name, castle_name, location, "
-					+ "head_of_house) VALUES (?,?,?,?)";
+		String sql = "INSERT INTO house (house_name, castle_name, location, " + "head_of_house) VALUES (?,?,?,?)";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			conn.setAutoCommit(false);
@@ -175,17 +173,55 @@ public class WesterosDAOImpl implements WesterosDAO {
 
 	public House editHouse(House house) {
 
-		String sql = "UPDATE house SET house_name = ?, castle_name, location = ?, "
-					+ "head_of_house = ? WHERE id = ?";
+		String sql = "UPDATE house SET house_name = ?, castle_name = ?, location = ?, "
+				+ "head_of_house = ? WHERE id = ?";
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
 		try {
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement stmt = conn.prepareStatement(sql);
+			conn = DriverManager.getConnection(url, user, pass);
+			stmt = conn.prepareStatement(sql);
 			conn.setAutoCommit(false);
 			stmt.setString(1, house.getHouseName());
 			stmt.setString(2, house.getCastleName());
 			stmt.setString(3, house.getLocation());
 			stmt.setString(4, house.getHeadOfHouse());
 			stmt.setInt(5, house.getId());
+			int rowsUpdated = stmt.executeUpdate();
+
+			if (rowsUpdated == 1) {
+				conn.commit();
+				return house;
+			} else {
+				conn.rollback();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	public Player editPlayer(Player player) {
+
+		String sql = "UPDATE player SET first_name = ?, last_name = ?, nickname = ?, " + "status = ? WHERE id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			conn.setAutoCommit(false);
+			stmt.setString(1, player.getFirstName());
+			stmt.setString(2, player.getLastName());
+			stmt.setString(3, player.getNickName());
+			stmt.setString(4, player.getStatus());
+			stmt.setInt(5, player.getId());
 			int rowsUpdated = stmt.executeUpdate();
 
 			if (rowsUpdated == 1) {
@@ -201,39 +237,54 @@ public class WesterosDAOImpl implements WesterosDAO {
 			e.printStackTrace();
 		}
 
-		return house;
+		return player;
 	}
 
-	public Player editPlayer(Player player) {
+	@Override
+    public void deleteHouse(Integer id) {
+        String sql = "DELETE FROM house WHERE id = ?";
+        try {
+            Connection conn = DriverManager.getConnection(url, user, pass);
+			conn.setAutoCommit(false);
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            int rowsUpdated = stmt.executeUpdate();
+            if (rowsUpdated == 1) {
+                conn.commit();
+            } else {
+            	conn.rollback();
+            }
+            
+			stmt.close();
+			conn.close();
+            
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
-	 String sql = "UPDATE player SET first_name = ?, last_name = ?, nickname = ?, "
-	 			+ "status = ? WHERE id = ?";
-	 try {
-	 Connection conn = DriverManager.getConnection(url, user, pass);
-	 PreparedStatement stmt = conn.prepareStatement(sql);
-	 conn.setAutoCommit(false);
-	 stmt.setString(1, player.getFirstName());
-	 stmt.setString(2, player.getLastName());
-	 stmt.setString(3, player.getNickName());
-	 stmt.setString(4, player.getStatus());
-	 stmt.setInt(5, player.getId());
-	 int rowsUpdated = stmt.executeUpdate();
-	
-	 if (rowsUpdated == 1) {
-	 conn.commit();
-	 } else {
-	 conn.rollback();
-	 }
-	
-	 stmt.close();
-	 conn.close();
-	
-	 } catch (SQLException e) {
-	 e.printStackTrace();
-	 }
-	
-	 return player;
-	 }
+	@Override
+	public void deletePlayer(Integer id) {
+		String sql = "DELETE FROM player WHERE id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			conn.setAutoCommit(false);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			int rowsUpdated = stmt.executeUpdate();
+			if (rowsUpdated == 1) {
+				conn.commit();
+			} else {
+				conn.rollback();
+			}
+			
+			stmt.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	// @Override
 	// public List<Player> getPlayersByHouse(House house) {

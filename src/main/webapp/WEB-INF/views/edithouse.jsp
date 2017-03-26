@@ -6,12 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Edit ${house.name}</title>
+<title>Edit ${house.houseName}</title>
 </head>
 <body>
 
-<h1><a href="welcome.do">Home</a></h1>
-<h1>Editing ${house.name}</h1>
+<h1>Editing ${house.houseName}</h1>
 	<form action="editHouse.do" method="POST">
 		House Name: <input type="text" name="name" value="${house.houseName}"/><br>
 		Castle Name: <input type="text" name="name" value="${house.castleName}"/><br>
